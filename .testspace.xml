@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema version="1.0" manual="0">
+  <root>
+    <suite name="Install.prerequisites" state="1" id=".sh" description="**Install** system prerequisites ">
+      <attributes>
+        <![CDATA[sudo pip install gcovr]]>
+      </attributes>
+    </suite>
+    <suite name="Download.framework" state="1" id=".sh" description="**Downloads** the CppUTest framework from GitHub">
+      <attributes>
+        <![CDATA[rm -rf cpputest
+wget --no-check-certificate -O cpputest-3.7.1.zip https://github.com/cpputest/cpputest.github.io/blob/master/releases/cpputest-3.7.1.zip?raw=true
+unzip cpputest-3.7.1.zip
+mv cpputest-3.7.1 cpputest
+rm cpputest-3.7.1.zip]]>
+      </attributes>
+    </suite>
+    <suite name="Build.lib" state="1" id=".sh" description="**Builds** the CppUTest library">
+      <attributes>
+        <![CDATA[cd cpputest/cpputest_build
+
+autoreconf .. -i
+../configure
+make
+cp -R ./lib ../]]>
+      </attributes>
+    </suite>
+    <suite name="Build.examples" state="1" id=".sh" description="**Builds** the CppUTest examples">
+      <attributes>
+        <![CDATA[cd cpputest/examples
+make CPPUTEST_USE_GCOV=Y clean all_no_tests ]]>
+      </attributes>
+    </suite>
+    <suite name="Run.tests" state="1" id=".sh" description="Execute **all** of the example test cases">
+      <attributes>
+        <![CDATA[cd cpputest/examples
+rm -rf cpputest_*.xml
+./CppUTestExamples_tests -o junit -v
+echo "$PWD/cpputest_*.xml" > ${self.result}]]>
+      </attributes>
+    </suite>
+    <suite name="Generate.coverage" state="1" id=".sh" description="Code coverage based on latest run. Review the **Reports** tab for historical tracking">
+      <attributes>
+        <![CDATA[cd cpputest/examples
+gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
+echo $PWD/coverage.xml > ${self.result}]]>
+      </attributes>
+    </suite>
+  </root>
+</schema>
