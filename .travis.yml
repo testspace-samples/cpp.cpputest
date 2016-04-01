@@ -19,7 +19,7 @@ before_install:
 
 script:
 # Build the CppUTest examples
- - cd cpputest/examples
+ - cd $TRAVIS_BUILD_DIR/cpputest/examples
  - make CPPUTEST_USE_GCOV=Y clean all_no_tests 
 # Execute all of the example test cases; generate coverage
  - ./CppUTestExamples_tests -o junit -v
