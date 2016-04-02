@@ -1,0 +1,13 @@
+ language: cpp
+ 
+ env:
+ - secure: arhxP/gnC2Kj/1w3JH4aJLXEBMQ8Uhg9SPdbTpmTyKJaAycO+aFrWKvRaVyCBkeI0B0j1qB+v+3TUcbAFn43lEoRz19VX8sD1LMQfXObcGOmqMQo6b8EGHs36F4sjsysqXnWLWS7ut2GxOIiouW4p6oQUfsAbTF603GLVVp6C0bd9ptVTBL5EY1LO7bAhbMOTDOgQyYBGUCUFZI+WlwcxOkjlQagHV95XRSckp8ziHgh1Z7eFf3VEQlCR3nBtyzXfrNo9joD39+VqmeMWdPfDNLcF/HFy5eugmYzrHlkowaymOSMHrfemiYGoJUWeCDGxO2je0zJ9X8C7mSsqPzq2w==
+ 
+ before_script:
+   ./testspace_install.sh
+    
+ script: 
+   export PATH="${HOME}/testspace:${PATH}"
+ - testspace config url TESTSPACE_TOKEN
+ - testspace run
+    
