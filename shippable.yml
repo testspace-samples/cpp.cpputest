@@ -8,7 +8,7 @@
     
  script: 
  - export PATH="${HOME}/testspace:${PATH}"
-#- testspace config url TESTSPACE_TOKEN
- - testspace config url http://2055243f070dc45ca90cb7cca8986161e645be66:@munderseth.stridespace.com/cpp/cpputest.ci
+ - testspace config url TESTSPACE_TOKEN
+ #- testspace config url http://2055243f070dc45ca90cb7cca8986161e645be66:@munderseth.stridespace.com/cpp/cpputest.ci
  - testspace run
     
