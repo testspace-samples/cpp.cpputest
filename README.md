@@ -8,9 +8,8 @@ Sample demonstrates techniques for using Testspace with C++ code and the [CppUTe
 ***
 
 [![Build Status](https://travis-ci.org/testspace-samples/cpp.cpputest.svg?branch=master)](https://travis-ci.org/testspace-samples/cpp.cpputest)
-[![Space Health](http://munderseth.stridespace.com/projects/262/spaces/805/badge)](http://munderseth.stridespace.com/projects/262/spaces/805 "Test Cases")
-[![Space Metric](http://munderseth.stridespace.com/projects/262/spaces/805/metrics/159/badge)](http://munderseth.stridespace.com/projects/262/spaces/805/metrics#metric-159 "Line/Statement Coverage")
-
+[![Space Health](https://samples.testspace.com/projects/84/spaces/286/badge)](https://samples.testspace.com/projects/84/spaces/286 "Test Cases")
+[![Space Metric](https://samples.testspace.com/projects/84/spaces/286/metrics/181/badge)](https://samples.testspace.com/projects/84/spaces/286/metrics#metric-181 "Line/Statement Coverage")
 
 ***
 
@@ -29,15 +28,15 @@ Publish **`test results`** along with **`code coverage`**
  testspace publish [Tests]cpputest_*.xml coverage.xml
 </pre>
 
-Checkout the [sample](http://munderseth.stridespace.com/projects/cpp/spaces/cpputest.example). 
+Checkout the [Space](https://samples.testspace.com/projects/cpp/spaces/cpputest). 
 
 ***
 
 To fork this example using Travis requires:
-  - Account at www.testspace.com (use `Open`)
+  - Create an account at www.testspace.com
   - Travis Environment Variables:
-    - The `TESTSPACE_USER_TOKEN` *Name* is set to the *Value* defined as your [Access token](http://help.testspace.com/using-your-organization:user-settings).
-    - The `TESTSPACE_URL` *Name* is set to `my-org-name.testspace.com/my-project/my-space`. Refer [here](http://help.testspace.com/reference:runner-reference#config) for more details. This example uses `samples.testspace.com/cpp/cpputest.example`.
+    - `TESTSPACE_USER_TOKEN` set to the `value` defined as your [Access token](http://help.testspace.com/using-your-organization:user-settings).
+    - `TESTSPACE_URL` set to `my-org-name.testspace.com/my-project/my-space`. Refer [here](http://help.testspace.com/reference:runner-reference#config) for more details. This example uses `samples.testspace.com/cpp/cpputest`.
   
 
 

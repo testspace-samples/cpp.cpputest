@@ -2,8 +2,8 @@
  
  env:
    global:
-     - secure: arhxP/gnC2Kj/1w3JH4aJLXEBMQ8Uhg9SPdbTpmTyKJaAycO+aFrWKvRaVyCBkeI0B0j1qB+v+3TUcbAFn43lEoRz19VX8sD1LMQfXObcGOmqMQo6b8EGHs36F4sjsysqXnWLWS7ut2GxOIiouW4p6oQUfsAbTF603GLVVp6C0bd9ptVTBL5EY1LO7bAhbMOTDOgQyYBGUCUFZI+WlwcxOkjlQagHV95XRSckp8ziHgh1Z7eFf3VEQlCR3nBtyzXfrNo9joD39+VqmeMWdPfDNLcF/HFy5eugmYzrHlkowaymOSMHrfemiYGoJUWeCDGxO2je0zJ9X8C7mSsqPzq2w==
- 
+     - secure: wJ0vFyI3Eew/iIhpYyAKJ1pCiKjse2jEMitbx6tSxefS2wn+Jy9mNrAeA6SHd99w3/K6fFN3jmoKvQNJys/sK0kWHwSoXA/UBbt9wU6vzzdd+VAxJ2Zk29JC914XzTqRVZhIisr0nI3CgM1VAnLukpJPiezNvST1Y2z0duFsQQPhrByFtG5o9lmEiunXGRSGi/RDdgqe9N+bdtU+cx18OiyWv0btndPmf3f2QX054ctaaCdxtix6oVXzC84BPz5NIgtUfm7wsqpboQUbQCJo/iIgr5tEs+n5UDp70mxTo4FIhI9E16IahVXkceTvJQ8Pi44i808JbjA5xA2l98sD/g==
+
  before_script:
    - ./testspace_install.sh
    - mkdir -p shippable/codecoverage
