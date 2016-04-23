@@ -19,7 +19,7 @@ Build Examples provided by the CppUTest framework:
 cd cpputest/examples
 make CPPUTEST_USE_GCOV=Y clean all_no_tests 
 ./CppUTestExamples_tests -o junit  -v
-gcovr --root cpputest/examples --filter ".*examples.*" --exclude ".*AllTests.*" -x -o ${MYDIR}/coverage.xml
+gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
 </pre>
 
 Publish **`test results`** along with **`code coverage`**
@@ -33,10 +33,9 @@ Checkout the [Space](https://samples.testspace.com/projects/cpp/spaces/cpputest)
 ***
 
 To fork this example using Travis requires:
-  - Create an account at www.testspace.com
-  - Travis Environment Variables:
-    - `TESTSPACE_USER_TOKEN` set to the `value` defined as your [Access token](http://help.testspace.com/using-your-organization:user-settings).
-    - `TESTSPACE_URL` set to `my-org-name.testspace.com/my-project/my-space`. Refer [here](http://help.testspace.com/reference:runner-reference#config) for more details. This example uses `samples.testspace.com/cpp/cpputest`.
-  
-
+  - Account at www.testspace.com.
+  - Travis Environment Variable: 
+    - `TESTSPACE_URL` = `credentials:@my-org-name.testspace.com/my-project/my-space`
+    - `credentials` set to `username:password` or your [access token](http://help.testspace.com/using-your-organization:user-settings).
+    - `my-org-name.testspace.com/my-project/my-space` based on your subdomain, project, and space names. Refer [here](http://help.testspace.com/reference:runner-reference#login-credentials) for more details. 
 
