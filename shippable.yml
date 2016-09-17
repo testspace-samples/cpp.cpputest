@@ -2,17 +2,27 @@
  
  env:
    global:
-    - secure: k6jkiY9C7gezdyti8Ub8XAELACWtm5p4wvqyC0FN0N1eoOMzoP21OdA1WlqDV8RkBeoCrukgujXqqBqNfVQ7wWC5OUuV/KXJE+xwyy64Ak6APOvqoyXQ3d9OW+kGJKemf8wsFkekQMrN5N/ZB4fJbJLKOCmLXvxI24LVl9TfypbmpwRtvTYxlWbhu5XwkfzGOSboC6E8dSvM3HSjMaqUE5p+jXb2gFEYYLI/Kf94pJ5iVLXk96fmpnl+IROz2uvY5fspWEaCAQ2e+IDKLf2eciO3rXrizddauSAY272umaQoJSeIkRteMgI/UCFXHzgh/Zc+wGaNZBnbDel5I48XwA==
+    - secure: C5nKWcsIlJyG8gLnlaePRGuSW4F02+EZLgZAsBbzIBFQRrL5iNy1Ppf0pnqeAo3S8I3vVumxQ9Fwcm+kOBrgMNiam8sDTsU9+V8odPckvF6/plH7fiG5bHzKuUZuog68MkEiSUGvrf2xuJYI3AVuA+BY+MPvpJ7hZkCrd4+03ZZGhOQzTX2dpTZC7LwmgtUKuazAHUQ6Ay+lrTz9UWP5n/qCsO8Q/7QAFLQUHkRHEalLEOrW9BVdKFmjOH/8DTt8PLKL+6SOFKXvDu1+a1WR+kgelaFOIe+tA5AbHHa1o8OifGwTNlJymg6Fv+U4jUFYZVp72lSbMma9erkTA5Pb5w==
    
  before_script:
-   - ./testspace_install.sh
-   - export PATH="${HOME}/testspace:${PATH}"
-   - mkdir -p shippable/codecoverage
-   - mkdir -p shippable/testresults
-    
- script: 
-   - testspace import .testspace.xml ${TESTSPACE_URL}
-   - testspace run ${TESTSPACE_URL}
+  - sudo pip install gcovr
+  - wget --no-check-certificate -O ./cpputest-3.7.1.zip https://github.com/cpputest/cpputest.github.io/blob/master/releases/cpputest-3.7.1.zip?raw=true
+  - unzip cpputest-3.7.1.zip 
+  - mv cpputest-3.7.1 cpputest
+  - rm cpputest-3.7.1.zip 
+
+  - cd cpputest/cpputest_build
+  - autoreconf .. -i
+  - ../configure
+  - make
+  - cp -R ./lib ../
  
-   - cp cpputest/examples/cpputest_*.xml shippable/testresults
-   - cp cpputest/examples/coverage.xml   shippable/codecoverage
+ script:
+  - cd ../examples
+  - make CPPUTEST_USE_GCOV=Y clean all_no_tests 
+  - ./CppUTestExamples_tests -o junit -v
+  - gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
+ 
+ after_script: 
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}

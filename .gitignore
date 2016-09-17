@@ -6,7 +6,8 @@
 !.travis.yml
 !LICENSE
 !README.md
-!testspace_install.sh
-!.testspace.xml
+
 !shippable.yml
+
+!.c9build.sh
 
