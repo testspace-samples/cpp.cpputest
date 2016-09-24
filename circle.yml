@@ -1,0 +1,18 @@
+dependencies:
+  pre:
+   - sudo pip install gcovr
+   - wget --no-check-certificate -O ./cpputest-3.7.1.zip https://github.com/cpputest/cpputest.github.io/blob/master/releases/cpputest-3.7.1.zip?raw=true
+   - unzip cpputest-3.7.1.zip 
+   - mv cpputest-3.7.1 cpputest
+   - rm cpputest-3.7.1.zip 
+  override:
+   - cd cpputest/cpputest_build; autoreconf .. -i; ../configure; make; cp -R ./lib ../
+
+test:
+  override:
+   - cd $HOME/cpp.cpputest/cpputest/examples; make CPPUTEST_USE_GCOV=Y clean all_no_tests
+   - $HOME/cpp.cpputest/cpputest/examples/CppUTestExamples_tests -o junit -v; gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
+   
+  post:  
+   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+   - testspace [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/${CIRCLE_BRANCH}#circle.Build.${CIRCLE_BUILD_NUM}

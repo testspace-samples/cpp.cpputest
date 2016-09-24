@@ -3,12 +3,12 @@
 
 # But not these files
 !.gitignore
-!.travis.yml
+
 !LICENSE
 !README.md
 
+!.travis.yml
 !shippable.yml
 !circle.yml
-
 !.c9build.sh
 
