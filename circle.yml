@@ -10,8 +10,9 @@ dependencies:
 
 test:
   override:
-   - cd ../examples; make CPPUTEST_USE_GCOV=Y clean all_no_tests;./CppUTestExamples_tests -o junit -v; gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
-   
+   - cd $HOME/cpp.cpputest/cpputest/examples; make CPPUTEST_USE_GCOV=Y clean all_no_tests
+   - $HOME/cpp.cpputest/cpputest/examples/CppUTestExamples_tests -o junit -v; gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
+
   post:  
    - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
    - cd $HOME/cpp.cpputest/cpputest/examples
