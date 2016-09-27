@@ -2,7 +2,8 @@ language:
  - cpp
 
 env:
- - CPPUTEST_HOME=$TRAVIS_BUILD_DIR/cpputest-3.8
+ global:
+  - CPPUTEST_HOME=$TRAVIS_BUILD_DIR/cpputest-3.8
 
 before_install:
  - sudo pip install gcovr
