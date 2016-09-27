@@ -25,17 +25,16 @@ Publishing **Test Content** using www.testspace.com.
 Build Examples provided by the CppUTest framework:
 
 <pre>
-cd cpputest/examples
-make CPPUTEST_USE_GCOV=Y clean all_no_tests 
-./CppUTestExamples_tests -o junit  -v
-gcovr --root ../.. --filter ".*examples.*" --exclude ".*AllTests.*" -x -o coverage.xml
+make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
+$CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit  -v
+gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 </pre>
 
-Publish **`test results`** along with **`code coverage`**
+Publish **`test results`** along with **`static analysis`** and **`code coverage`**
 
 <pre>
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-testspace [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/$BRANCH_NAME
+testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/$BRANCH_NAME
 </pre>
 
 Checkout the [Space](https://samples.testspace.com/projects/cpp.cpputest). 
