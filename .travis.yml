@@ -2,7 +2,7 @@ language:
  - cpp
 
 env:
- - CPPUTEST_HOME=$PWD/cpputest-3.8
+ - CPPUTEST_HOME=$TRAVIS_BUILD_DIR/cpputest-3.8
 
 before_install:
  - sudo pip install gcovr
@@ -10,7 +10,7 @@ before_install:
  - unzip cpputest-3.8.zip
 
 install:
- - pushd $CPPUTEST_HOME/cpputest/cpputest_build
+ - pushd $CPPUTEST_HOME/cpputest_build
  - autoreconf .. -i
  - ../configure
  - make

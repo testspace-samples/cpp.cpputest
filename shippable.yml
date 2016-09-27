@@ -2,25 +2,25 @@ language: c
  
 env:
  - secure: C5nKWcsIlJyG8gLnlaePRGuSW4F02+EZLgZAsBbzIBFQRrL5iNy1Ppf0pnqeAo3S8I3vVumxQ9Fwcm+kOBrgMNiam8sDTsU9+V8odPckvF6/plH7fiG5bHzKuUZuog68MkEiSUGvrf2xuJYI3AVuA+BY+MPvpJ7hZkCrd4+03ZZGhOQzTX2dpTZC7LwmgtUKuazAHUQ6Ay+lrTz9UWP5n/qCsO8Q/7QAFLQUHkRHEalLEOrW9BVdKFmjOH/8DTt8PLKL+6SOFKXvDu1+a1WR+kgelaFOIe+tA5AbHHa1o8OifGwTNlJymg6Fv+U4jUFYZVp72lSbMma9erkTA5Pb5w==
- - CPPUTEST_HOME=$PWD/cpputest-3.8
+ - CPPUTEST_HOME=$SHIPPABLE_BUILD_DIR/cpputest-3.8
 
-before_script:
- - sudo pip install gcovr
- - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
- - unzip cpputest-3.8.zip
+build:
+ ci:
+  - sudo pip install gcovr
+  - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
+  - unzip cpputest-3.8.zip
 
- - pushd cpputest/cpputest_build
- - autoreconf .. -i
- - ../configure
- - make
- - cp -R ./lib ../
- - popd
+  - pushd $CPPUTEST_HOME/cpputest_build
+  - autoreconf .. -i
+  - ../configure
+  - make
+  - cp -R ./lib ../
+  - popd
 
-script:
- - make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
- - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
- - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
+  - make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
+  - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
+  - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 
-after_script: 
- - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
- - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}
+ post_ci: 
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/${BRANCH}#ship.Build.${BUILD_NUMBER}

@@ -1,6 +1,6 @@
 machine:
   environment:
-   CPPUTEST_HOME: $PWD/cpputest-3.8
+   CPPUTEST_HOME: $HOME/$CIRCLE_PROJECT_REPONAME/cpputest-3.8
 
 dependencies:
   pre:
