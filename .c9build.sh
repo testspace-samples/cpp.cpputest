@@ -38,4 +38,4 @@ gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 # Publish
 curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
 # assuming testspace is already configured with "credentials@domain/project"
-#testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml master.c9
+testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml master.c9
