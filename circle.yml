@@ -8,7 +8,7 @@ dependencies:
    - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
    - unzip cpputest-3.8.zip
   override:
-   - cd $CPPUTEST_HOME/cpputest_build; autoreconf .. -i; ../configure; make; cp -R ./lib ../
+   - cd $CPPUTEST_HOME/cpputest_build && autoreconf .. -i && ../configure && make && cp -R ./lib ../
 
 test:
   override:
