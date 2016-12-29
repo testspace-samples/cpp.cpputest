@@ -23,6 +23,7 @@ script:
  - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
  - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 
-after_script:  
- - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
- - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml $TESTSPACE_TOKEN/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}
+# Requires TESTSPACE_TOKEN environment variable.   
+after_script:
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
+  - testspace @.testspace.txt $TESTSPACE_TOKEN/${TRAVIS_REPO_SLUG/\//:}/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}

@@ -1,0 +1,3 @@
+build.log{issues} 
+[Tests]cpputest_*.xml 
+coverage.xml
