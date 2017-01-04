@@ -32,7 +32,7 @@ make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee bu
 rm -f cpputest_*.xml
 $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
 rm -f coverage.xml
-gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
+gcovr --root ./ --filter ".*/ApplicationLib/.*" -x -o coverage.xml
 
 # Push content
 
