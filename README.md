@@ -16,9 +16,9 @@ Using Multiple Online CI Services:
 ***
 Publishing **Test Content** using www.testspace.com.
 
-[![Space Health](https://samples.testspace.com/projects/170/spaces/829/badge)](https://samples.testspace.com/projects/170/spaces/829 "Test Cases")
-[![Space Metric](https://samples.testspace.com/projects/170/spaces/829/metrics/820/badge)](https://samples.testspace.com/spaces/829/schema/Code%20Coverage "Code Coverage (lines)")
-[![Space Metric](https://samples.testspace.com/projects/170/spaces/829/metrics/820/badge)](https://samples.testspace.com/spaces/829/schema/Static%20Analysis "Static Analysis (issues)")
+[![Space Health](https://samples.testspace.com/spaces/829/badge)](https://samples.testspace.com/spaces/829 "Test Cases")
+[![Space Metric](https://samples.testspace.com/spaces/829/metrics/820/badge)](https://samples.testspace.com/spaces/829/schema/Code%20Coverage "Code Coverage (lines)")
+[![Space Metric](https://samples.testspace.com/spaces/829/metrics/820/badge)](https://samples.testspace.com/spaces/829/schema/Static%20Analysis "Static Analysis (issues)")
 
 ***
 
