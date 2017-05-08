@@ -2,11 +2,14 @@ language: c
  
 env:
  global:
-  - secure: mJXLfvFHHwpvSjrbZYQnRUelg0PRy31noY2lUbJJOke5HCvxv4KR89RXKw5bbPLJ0AP/O13190pRYihxCBa2GfWcI26/ucQB0jZyIfk4FlMSB/DnxApcySJQGpTW2vwZSpkx62iHXUL3ubToAx6fyvjBstQyjOUrAMGyhzD/n9hJPSe6MBtDXH5Ew8cCCFhcHACxH9u0wfQFkC6br8tIxlkyNRdkOgbSCN6eo9hmTO0WWa9q/TH8a399l1mQbiIdqEUP1DD3ia9sfncPWRX2gIKDwLgaVFzkH8wC+tTodVMPb1ajFCQNJGkJznwM9MItfc7SBsOI+4fkh4+F2MkK6A==
   - CPPUTEST_HOME=$SHIPPABLE_BUILD_DIR/cpputest-3.8
 
 build:
  ci:
+  - mkdir -p $HOME/bin
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
+  - testspace config url samples.testspace.com
+  - testspace -v
   - sudo pip install gcovr
   - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
   - unzip cpputest-3.8.zip
@@ -22,11 +25,9 @@ build:
   - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
   - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 
- # Requires TESTSPACE_TOKEN environment variable. 
  on_success:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+   - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml
 
  on_failure:
-   - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-   - testspace @.testspace.txt $TESTSPACE_TOKEN/${SHIPPABLE_REPO_SLUG/\//:}/${BRANCH}#ship.Build.${BUILD_NUMBER}
+   - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml
+ 

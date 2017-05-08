@@ -6,6 +6,10 @@ env:
   - CPPUTEST_HOME=$TRAVIS_BUILD_DIR/cpputest-3.8
 
 before_install:
+ - mkdir -p $HOME/bin
+ - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
+ - testspace config url samples.testspace.com
+ - testspace -v
  - sudo pip install gcovr
  - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
  - unzip cpputest-3.8.zip
@@ -23,7 +27,5 @@ script:
  - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
  - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 
-# Requires TESTSPACE_TOKEN environment variable.   
 after_script:
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin
-  - testspace @.testspace.txt $TESTSPACE_TOKEN/${TRAVIS_REPO_SLUG/\//:}/${TRAVIS_BRANCH}#travis.Build.${TRAVIS_BUILD_NUMBER}
+ - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml 

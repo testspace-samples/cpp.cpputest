@@ -41,6 +41,5 @@ CI=true testspace config url samples.testspace.com
 testspace -v
 
 # Push content
-
-testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml 
+testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml "#c9.Build"
 
