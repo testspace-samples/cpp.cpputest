@@ -1,4 +1,6 @@
 machine:
+  services:
+    docker
   environment:
    CPPUTEST_HOME: $HOME/$CIRCLE_PROJECT_REPONAME/cpputest-3.8
 
@@ -7,7 +9,7 @@ dependencies:
    - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
    - testspace config url samples.testspace.com
    - testspace -v
-   - sudo pip install gcovr
+   - pip install gcovr
    - wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip
    - unzip cpputest-3.8.zip
   override:
