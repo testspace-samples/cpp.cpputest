@@ -1,10 +1,14 @@
-[![Testspace](http://www.testspace.com/img/Testspace.png)](http://www.testspace.com)
+[![Testspace](https://www.testspace.com/img/Testspace.png)](https://www.testspace.com)
 
 ***
 
 ## C++/CppUTest sample for demonstrating Testspace
 
-Sample demonstrates techniques for using Testspace with C++ code and the [CppUTest framework](https://cpputest.github.io) based on the [Samples help](https://help.testspace.com/getting-started:samples) article.
+Sample demonstrates techniques for using Testspace with C++ code and the [CppUTest framework](https://cpputest.github.io): 
+  * Using a Testspace Project that is `connected` with this GitHub Repo
+  * Using 3 Online CI services for demonstration purposes only
+  * Can review the Results at [testspace-samples:cpp.cpputest](https://samples.testspace.com/projects/testspace-samples:cpp.cpputest)  
+  * Refer to our [Getting Started](https://help.testspace.com/getting-started) help articles for more information
 
 ***
 Using Multiple Online CI Services:
@@ -14,7 +18,7 @@ Using Multiple Online CI Services:
 [![Run Status](https://api.shippable.com/projects/56ffcaa09d043da07b0991f0/badge?branch=master)](https://app.shippable.com/projects/56ffcaa09d043da07b0991f0)
 
 ***
-Publishing **Test Content** using www.testspace.com.
+Publishing Results using www.testspace.com.
 
 [![Space Health](https://samples.testspace.com/spaces/829/badge?token=623ebd46c0696b0d7ef47baee4e01be2834fa1ab)](https://samples.testspace.com/spaces/829 "Test Cases")
 [![Space Metric](https://samples.testspace.com/spaces/829/metrics/822/badge?token=a41267220195fefd74c9b41670de90d08ee8b7f2)](https://samples.testspace.com/spaces/829/schema/Code%20Coverage "Code Coverage (lines)")
@@ -45,5 +49,5 @@ Push Content using Testspace client
 testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml
 </pre> 
 
-Checkout the published [Results](https://samples.testspace.com/projects/testspace-samples:cpp.cpputest).  
+
 

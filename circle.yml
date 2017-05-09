@@ -21,6 +21,5 @@ test:
    - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
    - gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 
- # Requires TESTSPACE_TOKEN environment variable.      
   post:
    - testspace build.log{issues} [Tests]cpputest_*.xml coverage.xml 
