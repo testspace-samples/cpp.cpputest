@@ -25,6 +25,7 @@ Publishing Results using www.testspace.com.
 [![Space Metric](https://samples.testspace.com/spaces/829/metrics/820/badge?token=fa04ef73f740f3a71306a5d715dea7db81d4f279)](https://samples.testspace.com/spaces/829/schema/Static%20Analysis "Static Analysis (issues)")
 
 
+
 ***
 
 Download and configure the Testspace client 
@@ -48,6 +49,7 @@ Push Content using Testspace client
 <pre>
 testspace build.log{lint} [Tests]cpputest_*.xml coverage.xml
 </pre> 
+
 
 
 
