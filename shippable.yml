@@ -7,7 +7,7 @@ env:
 build:
  ci:
   - mkdir -p $HOME/bin
-  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux-dev.tgz | tar -zxvf- -C $HOME/bin
+  - curl -s https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | tar -zxvf- -C $HOME/bin
   - testspace config url samples.testspace.com
   - testspace -v
   - pip install gcovr
