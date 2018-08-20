@@ -9,7 +9,7 @@
 
 !.travis.yml
 !shippable.yml
-!circle.yml
+!.circleci/config.yml
 !.c9build.sh
 !.testspace.txt
 
