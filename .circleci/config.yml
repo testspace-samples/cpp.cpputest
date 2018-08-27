@@ -3,7 +3,9 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/python:2.7-stretch-browsers
+      - image: circleci/python:2.7-stretch
+        environment:
+          CPPUTEST_HOME: cpputest-3.8      
     steps:
       - checkout
       - run: "curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin"
@@ -11,9 +13,9 @@ jobs:
       - run: "sudo pip install gcovr"
       - run: "wget https://github.com/cpputest/cpputest/releases/download/v3.8/cpputest-3.8.zip"
       - run: "unzip cpputest-3.8.zip"
-      - run: cd cpputest-3.8/cpputest_build && autoreconf .. -i && ../configure && make && cp -R ./lib ../
-      - run: make -C cpputest-3.8/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
-      - run: cpputest-3.8/examples/CppUTestExamples_tests -o junit -v
+      - run: cd $CPPUTEST_HOME/cpputest_build && autoreconf .. -i && ../configure && make && cp -R ./lib ../
+      - run: make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
+      - run: $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
       - run: gcovr --root ./ --filter ".*/ApplicationLib/.*" -x -o coverage.xml
       - run:
           name: Send reports to testspace
