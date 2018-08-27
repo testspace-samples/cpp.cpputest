@@ -12,4 +12,5 @@
 !.circleci/config.yml
 !.c9build.sh
 !.testspace.txt
+!fake-feature.txt
 
