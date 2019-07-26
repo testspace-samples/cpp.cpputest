@@ -23,7 +23,7 @@ install:
  - popd
 
 script:
- - make -C $CPPUTEST_HOME/examples CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
+ - make -C $CPPUTEST_HOME/examples CPPUTEST_CXX_WARNINGFLAGS=-Wno-c++14-compat CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
  - $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
  - gcovr --root ./ --filter ".*/ApplicationLib/.*" -x -o coverage.xml
  
