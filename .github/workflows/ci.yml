@@ -1,0 +1,45 @@
+name: Build
+on:
+  push:
+  schedule:
+    - cron:  '0 1 * * 0'
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    env:
+      CPPUTEST_HOME: cpputest-4.0
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 2.7
+      - name: Setup build tools
+        run: |
+          sudo pip install gcovr
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 50
+      - uses: testspace-com/setup-testspace@v1
+        with:
+          domain: samples
+      - name: Install CppUTest
+        run: |
+          wget https://github.com/cpputest/cpputest/releases/download/v4.0/cpputest-4.0.zip
+          unzip cpputest-4.0.zip
+          pushd $CPPUTEST_HOME/cpputest_build
+          autoreconf .. -i
+          ../configure
+          make
+          cp -R ./lib ../
+          popd
+      - name: Build
+        run: |
+          make -C $CPPUTEST_HOME/examples CPPUTEST_CXX_WARNINGFLAGS=-Wno-c++14-compat CPPUTEST_USE_GCOV=Y clean all_no_tests |& tee build.log ; test ${PIPESTATUS[0]} -eq 0
+      - name: Test
+        run: |
+          $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit -v
+          gcovr --root ./ --filter ".*/ApplicationLib/.*" -x -o coverage.xml
+      - name: Push
+        run: |
+          testspace build.log{lint} [Tests]cpputest_*.xml coverage.xml
+        if: always()

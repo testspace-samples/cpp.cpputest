@@ -4,18 +4,18 @@
 
 ## C++/CppUTest sample for demonstrating Testspace
 
-Sample demonstrates techniques for using Testspace with C++ code and the [CppUTest framework](https://cpputest.github.io): 
+Sample demonstrates techniques for using Testspace with C++ code and the [CppUTest framework](https://cpputest.github.io):
   * Using a Testspace Project that is `connected` with this GitHub Repo
   * Using 3 Online CI services for demonstration purposes only
-  * Can review the Results at [testspace-samples:cpp.cpputest](https://samples.testspace.com/projects/testspace-samples:cpp.cpputest)  
-  * Refer to our [Getting Started](https://help.testspace.com/getting-started) help articles for more information
+  * Can review the Results at [testspace-samples:cpp.cpputest](https://samples.testspace.com/projects/testspace-samples:cpp.cpputest)
+  * Refer to our [Help](https://help.testspace.com/) for more information
 
 ***
 Using Multiple Online CI Services:
 
+![Build](https://github.com/testspace-samples/cpp.googletest/workflows/Build/badge.svg)
 [![Build Status](https://travis-ci.org/testspace-samples/cpp.cpputest.svg?branch=master)](https://travis-ci.org/testspace-samples/cpp.cpputest)
 [![CircleCI](https://circleci.com/gh/testspace-samples/cpp.cpputest.svg?style=svg)](https://circleci.com/gh/testspace-samples/cpp.cpputest)
-[![Run Status](https://api.shippable.com/projects/56ffcaa09d043da07b0991f0/badge?branch=master)](https://app.shippable.com/projects/56ffcaa09d043da07b0991f0)
 
 ***
 Publishing Results using www.testspace.com.
@@ -28,7 +28,7 @@ Publishing Results using www.testspace.com.
 
 ***
 
-Download and configure the Testspace client 
+Download and configure the Testspace client
 
 <pre>
 mkdir -p $HOME/bin
@@ -44,11 +44,11 @@ $CPPUTEST_HOME/examples/CppUTestExamples_tests -o junit  -v
 gcovr --root ./ --filter ".*examples/ApplicationLib/.*" -x -o coverage.xml
 </pre>
 
-Push Content using Testspace client 
+Push Content using Testspace client
 
 <pre>
 testspace build.log{lint} [Tests]cpputest_*.xml coverage.xml
-</pre> 
+</pre>
 
 
 
