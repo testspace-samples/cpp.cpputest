@@ -13,7 +13,7 @@ Sample demonstrates techniques for using Testspace with C++ code and the [CppUTe
 ***
 Using Multiple Online CI Services:
 
-![Build](https://github.com/testspace-samples/cpp.googletest/workflows/Build/badge.svg)
+![Build](https://github.com/testspace-samples/cpp.cpputest/workflows/Build/badge.svg)
 [![Build Status](https://travis-ci.org/testspace-samples/cpp.cpputest.svg?branch=master)](https://travis-ci.org/testspace-samples/cpp.cpputest)
 [![CircleCI](https://circleci.com/gh/testspace-samples/cpp.cpputest.svg?style=svg)](https://circleci.com/gh/testspace-samples/cpp.cpputest)
 
