@@ -1,15 +1,6 @@
-# Ignore everything
-*
+cpputest*
 
-# But not these files
-!.gitignore
-
-!LICENSE
-!README.md
-
-!.travis.yml
-!shippable.yml
-!.circleci/config.yml
-!.c9build.sh
-!.testspace.txt
-
+build.log
+.cpputest_*.links/
+cpputest_*.xml
+coverage.xml
