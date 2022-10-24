@@ -6,19 +6,17 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     env:
       CPPUTEST_HOME: cpputest-4.0
     steps:
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
         with:
-          python-version: 2.7
+          python-version: 3.x
       - name: Setup build tools
         run: |
           sudo pip install gcovr
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 50
+      - uses: actions/checkout@v3
       - uses: testspace-com/setup-testspace@v1
         with:
           domain: samples

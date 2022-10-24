@@ -3,14 +3,15 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: circleci/python:2.7-stretch
+      - image: cimg/python:3.10
         environment:
           CPPUTEST_HOME: cpputest-4.0
     steps:
       - checkout
+      - run: sudo apt-get update && sudo apt-get install libtool
       - run: "curl -fsSL https://testspace-client.s3.amazonaws.com/testspace-linux.tgz | sudo tar -zxvf- -C /usr/local/bin"
       - run: "testspace config url samples.testspace.com"
-      - run: "sudo pip install gcovr"
+      - run: "pip install gcovr"
       - run: "wget https://github.com/cpputest/cpputest/releases/download/v4.0/cpputest-4.0.zip"
       - run: "unzip cpputest-4.0.zip"
       - run: cd $CPPUTEST_HOME/cpputest_build && autoreconf .. -i && ../configure && make && cp -R ./lib ../
