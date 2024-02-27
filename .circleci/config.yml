@@ -3,7 +3,7 @@ version: 2.0
 jobs:
   build:
     docker:
-      - image: cimg/python:3.10
+      - image: cimg/python:3.12
         environment:
           CPPUTEST_HOME: cpputest-4.0
     steps:
